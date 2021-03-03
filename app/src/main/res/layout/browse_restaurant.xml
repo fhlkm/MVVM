@@ -7,6 +7,9 @@
         <variable
             name="restaurantsViewModel"
             type="com.doordash.model.viewmodel.RestaurantsModel" />
+        <variable
+            name="view"
+            type="com.doordash.EntryActivity"/>
     </data>
 
     <LinearLayout
@@ -20,6 +23,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             app:items="@{restaurantsViewModel.restaurants}"
+            app:itemViewBinder="@{view.itemViewBinder}"
+
             />
     </LinearLayout>
 </layout>

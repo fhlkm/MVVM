@@ -2,6 +2,8 @@ package com.doordash.server;
 
 
 
+import com.doordash.model.data.Restaurant;
+
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -17,7 +19,7 @@ public class ApiService {
     private Retrofit retrofit;
     private ApiEndPoints apiService;
 
-    private String basicUrl = "https://swapi.dev/api/";
+    private String basicUrl = "https://api.doordash.com/";
     public volatile static ApiService instance;
     public static ApiService getInstance(){
         if(null == instance)
@@ -50,6 +52,10 @@ public class ApiService {
 //    public Observable<Result<Film>> getFilm(String  url){
 //        return  apiService.getFilm(url);
 //    }
+
+    public Observable<Result<Restaurant>> getRestaurant(double lat, double lng,int offset, int limit){
+        return  apiService.getRestaurants(lat,lng,offset,limit);
+    }
 
 
 }

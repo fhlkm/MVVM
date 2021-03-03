@@ -14,9 +14,9 @@ public class RecyclerViewBindings {
     private static final int KEY_ITEMS = -123;
     @BindingAdapter("items")
     public static <T> void setItems(RecyclerView recyclerView, Collection<T>items){
-
+        Log.i(TAG,"setItems");
         BindingRecyclerViewAdapter<T> adapter =(  BindingRecyclerViewAdapter<T>)recyclerView.getAdapter();
-        if(null ==adapter){
+        if(null !=adapter){
             Log.i(TAG,"setItems to Adapter");
             adapter.setItems(items);
         } else

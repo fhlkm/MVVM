@@ -2,6 +2,11 @@ package com.doordash.model.viewmodel;
 
 import androidx.databinding.Bindable;
 
+import com.doordash.BR;
+import com.doordash.R;
+import com.doordash.adapter.binder.RestaurantBinder;
+import com.doordash.adapter.binder.common.CompositeItemBinder;
+import com.doordash.adapter.binder.common.ItemBinder;
 import com.doordash.model.binding.ObservableArrayList;
 import com.doordash.model.data.Restaurant;
 
@@ -25,4 +30,6 @@ public class RestaurantsModel extends BaseObservable{
         }
         restaurants.addAll(temp);
     }
+
+
 }
