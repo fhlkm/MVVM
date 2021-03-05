@@ -21,7 +21,7 @@ public class MerchantPromotion {
     private Object deliveryFee;
     @SerializedName("delivery_fee_monetary_fields")
     @Expose
-    private DeliveryFeeMonetaryFields_ deliveryFeeMonetaryFields;
+    private DeliveryFeeMonetaryFields deliveryFeeMonetaryFields;
     @SerializedName("minimum_subtotal")
     @Expose
     private Object minimumSubtotal;
@@ -61,11 +61,11 @@ public class MerchantPromotion {
         this.deliveryFee = deliveryFee;
     }
 
-    public DeliveryFeeMonetaryFields_ getDeliveryFeeMonetaryFields() {
+    public DeliveryFeeMonetaryFields getDeliveryFeeMonetaryFields() {
         return deliveryFeeMonetaryFields;
     }
 
-    public void setDeliveryFeeMonetaryFields(DeliveryFeeMonetaryFields_ deliveryFeeMonetaryFields) {
+    public void setDeliveryFeeMonetaryFields(DeliveryFeeMonetaryFields deliveryFeeMonetaryFields) {
         this.deliveryFeeMonetaryFields = deliveryFeeMonetaryFields;
     }
 

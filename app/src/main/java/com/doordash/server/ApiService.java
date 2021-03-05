@@ -2,7 +2,7 @@ package com.doordash.server;
 
 
 
-import com.doordash.model.data.Restaurant;
+import com.doordash.model.data.SearchResult;
 
 import java.util.concurrent.TimeUnit;
 
@@ -53,7 +53,7 @@ public class ApiService {
 //        return  apiService.getFilm(url);
 //    }
 
-    public Observable<Result<Restaurant>> getRestaurant(double lat, double lng,int offset, int limit){
+    public Observable<Result<SearchResult>> getRestaurant(double lat, double lng, int offset, int limit){
         return  apiService.getRestaurants(lat,lng,offset,limit);
     }
 

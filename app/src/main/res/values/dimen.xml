@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_page_image_width">150dp</dimen>
+    <dimen name="main_page_image_height">120dp</dimen>
+    <dimen name="main_page_store_name_width">180dp</dimen>
+    <dimen name="main_page_store_name_height">40dp</dimen>
+    <dimen name="main_page_store_name_size">15sp</dimen>
+</resources>

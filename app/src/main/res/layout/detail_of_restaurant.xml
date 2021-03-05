@@ -5,11 +5,11 @@
     <data>
 
         <variable
-            name="restaurantsViewModel"
-            type="com.doordash.binding.viewmodel.RestaurantsModel" />
+            name="menuModel"
+            type="com.doordash.binding.viewmodel.MenuModel" />
         <variable
-            name="mainView"
-            type="com.doordash.EntryActivity"/>
+            name="restaurantView"
+            type="com.doordash.RestaurantDetailActivity"/>
     </data>
 
     <LinearLayout
@@ -23,10 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:scrollListener="@{mainView.scrollListener}"
-            app:items="@{restaurantsViewModel.restaurants}"
-            app:itemViewBinder="@{mainView.itemViewBinder}"
-            app:clickHandler="@{mainView.clickHandler}"
+            app:items="@{menuModel.dishes}"
+            app:itemViewBinder="@{restaurantView.itemViewBinder}"
 
             />
     </LinearLayout>

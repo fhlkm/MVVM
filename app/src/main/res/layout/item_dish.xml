@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--    variable set in onBindViewHolder-->
+    <data>
+
+        <variable
+            name="bindingdish"
+            type="com.doordash.binding.viewmodel.DishModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#FFFFFF"
+        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:gravity="center_horizontal"
+            android:id="@+id/dish_image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/main_page_image_height"
+            app:restaurantLogo="@{bindingdish.dishImageUrl}"
+            />
+
+        <TextView
+            android:id="@+id/dish_name"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/main_page_store_name_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dish_image"
+            android:text="@{bindingdish.dishName}"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/main_page_store_name_height"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
