@@ -13,16 +13,18 @@ import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.doordash.adapter.binder.RestaurantBinder;
-import com.doordash.adapter.binder.common.CompositeItemBinder;
-import com.doordash.adapter.binder.common.ItemBinder;
-import com.doordash.binding.ClickHandler;
-import com.doordash.databinding.BrowseRestaurantBinding;
 
-import com.doordash.model.data.SearchResult;
-import com.doordash.model.data.Store;
+import com.doordash.binding.binder.RestaurantBinder;
+import com.doordash.binding.binder.common.CompositeItemBinder;
+import com.doordash.binding.binder.common.ItemBinder;
+import com.doordash.adapter.ClickHandler;
+
+import com.doordash.bean.SearchResult;
+import com.doordash.bean.Store;
 import com.doordash.binding.viewmodel.StoreModel;
 import com.doordash.binding.viewmodel.RestaurantsModel;
+import com.doordash.databinding.BrowseRestaurantBinding;
+
 import com.doordash.server.ApiService;
 import com.doordash.server.ResultToResponseWithErrorHandlingTransformer;
 
@@ -37,8 +39,8 @@ import retrofit2.Response;
 
 public class EntryActivity extends AppCompatActivity {
     static String TAG="DD:EntryActivity";
-//    RestaurantsModel restaurantsModel;
-    BrowseRestaurantBinding viewBinding;
+    RestaurantsModel restaurantsModel;
+   BrowseRestaurantBinding viewBinding;
     Disposable disposable;
     RestaurantsModel model;
     List<StoreModel> StoreModelList =new ArrayList<>();

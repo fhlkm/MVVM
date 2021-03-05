@@ -2,7 +2,7 @@ package com.doordash.binding.viewmodel;
 
 import androidx.databinding.BaseObservable;
 
-import com.doordash.model.data.Store;
+import com.doordash.bean.Store;
 
 public class StoreModel extends BaseObservable {
     private Store store;

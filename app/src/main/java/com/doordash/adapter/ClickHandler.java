@@ -1,4 +1,4 @@
-package com.doordash.binding;
+package com.doordash.adapter;
 
 
 public interface ClickHandler<T>

@@ -2,7 +2,7 @@ package com.doordash.binding.viewmodel;
 
 import androidx.databinding.BaseObservable;
 
-import com.doordash.model.data.PopularItem;
+import com.doordash.bean.PopularItem;
 
 public class DishModel extends BaseObservable {
 

@@ -1,7 +1,6 @@
-package com.doordash.adapter.binder;
+package com.doordash.binding.binder;
 
-import com.doordash.adapter.binder.common.ConditionalDataBinder;
-import com.doordash.binding.viewmodel.RestaurantsModel;
+import com.doordash.binding.binder.common.ConditionalDataBinder;
 import com.doordash.binding.viewmodel.StoreModel;
 
 

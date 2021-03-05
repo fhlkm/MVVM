@@ -1,4 +1,4 @@
-package com.doordash.adapter.binder.common;
+package com.doordash.binding.binder.common;
 
 public class CompositeItemBinder<T> implements ItemBinder<T>
 {

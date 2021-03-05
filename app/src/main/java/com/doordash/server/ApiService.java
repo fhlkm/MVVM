@@ -2,7 +2,7 @@ package com.doordash.server;
 
 
 
-import com.doordash.model.data.SearchResult;
+import com.doordash.bean.SearchResult;
 
 import java.util.concurrent.TimeUnit;
 

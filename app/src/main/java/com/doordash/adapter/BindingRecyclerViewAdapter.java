@@ -1,4 +1,4 @@
-package com.doordash.binding;
+package com.doordash.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.databinding.ObservableList;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.doordash.adapter.binder.common.ItemBinder;
+import com.doordash.binding.binder.common.ItemBinder;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;

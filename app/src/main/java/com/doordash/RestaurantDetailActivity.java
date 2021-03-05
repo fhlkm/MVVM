@@ -10,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.doordash.adapter.binder.MenuBinder;
-import com.doordash.adapter.binder.common.CompositeItemBinder;
-import com.doordash.adapter.binder.common.ItemBinder;
+import com.doordash.binding.binder.MenuBinder;
+import com.doordash.binding.binder.common.CompositeItemBinder;
+import com.doordash.binding.binder.common.ItemBinder;
 import com.doordash.databinding.DetailOfRestaurantBinding;
-import com.doordash.model.data.PopularItem;
-import com.doordash.model.data.Store;
+import com.doordash.bean.PopularItem;
+import com.doordash.bean.Store;
 import com.doordash.binding.viewmodel.DishModel;
 import com.doordash.binding.viewmodel.MenuModel;
 import com.doordash.binding.viewmodel.RestaurantsModel;

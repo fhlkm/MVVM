@@ -1,10 +1,10 @@
 
-package com.doordash.model.data;
+package com.doordash.bean;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ExtraSosDeliveryFeeMonetaryFields {
+public class MinimumSubtotalMonetaryFields {
 
     @SerializedName("currency")
     @Expose
@@ -12,12 +12,12 @@ public class ExtraSosDeliveryFeeMonetaryFields {
     @SerializedName("display_string")
     @Expose
     private String displayString;
-    @SerializedName("unit_amount")
-    @Expose
-    private Integer unitAmount;
     @SerializedName("decimal_places")
     @Expose
     private Integer decimalPlaces;
+    @SerializedName("unit_amount")
+    @Expose
+    private Object unitAmount;
 
     public String getCurrency() {
         return currency;
@@ -35,20 +35,20 @@ public class ExtraSosDeliveryFeeMonetaryFields {
         this.displayString = displayString;
     }
 
-    public Integer getUnitAmount() {
-        return unitAmount;
-    }
-
-    public void setUnitAmount(Integer unitAmount) {
-        this.unitAmount = unitAmount;
-    }
-
     public Integer getDecimalPlaces() {
         return decimalPlaces;
     }
 
     public void setDecimalPlaces(Integer decimalPlaces) {
         this.decimalPlaces = decimalPlaces;
+    }
+
+    public Object getUnitAmount() {
+        return unitAmount;
+    }
+
+    public void setUnitAmount(Object unitAmount) {
+        this.unitAmount = unitAmount;
     }
 
 }

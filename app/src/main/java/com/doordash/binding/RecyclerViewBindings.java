@@ -8,7 +8,9 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.doordash.adapter.binder.common.ItemBinder;
+import com.doordash.adapter.BindingRecyclerViewAdapter;
+import com.doordash.adapter.ClickHandler;
+import com.doordash.binding.binder.common.ItemBinder;
 
 import java.util.Collection;
 

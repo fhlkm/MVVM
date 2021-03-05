@@ -1,7 +1,7 @@
 package com.doordash.server;
 
 
-import com.doordash.model.data.SearchResult;
+import com.doordash.bean.SearchResult;
 
 
 import io.reactivex.Observable;

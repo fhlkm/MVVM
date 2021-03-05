@@ -1,6 +1,6 @@
-package com.doordash.adapter.binder;
+package com.doordash.binding.binder;
 
-import com.doordash.adapter.binder.common.ConditionalDataBinder;
+import com.doordash.binding.binder.common.ConditionalDataBinder;
 import com.doordash.binding.viewmodel.DishModel;
 
 public class MenuBinder extends ConditionalDataBinder<DishModel> {
