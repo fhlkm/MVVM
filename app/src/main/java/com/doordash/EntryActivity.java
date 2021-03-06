@@ -3,6 +3,7 @@ package com.doordash;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,27 +74,29 @@ public class EntryActivity extends AppCompatActivity {
         Log.i(TAG,"Search Restaurants");
         isDownloading=true;
         ApiService apiService = ApiService.getInstance();
-        disposable = apiService.getRestaurant(37.422740,-122.139956,offset,20).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .compose(new ResultToResponseWithErrorHandlingTransformer<>()).subscribe(new Consumer<Response<?>>() {
-                    @Override
-                    public void accept(Response<?> response) throws Exception {
 
-                        isDownloading=false;
-                        SearchResult searchResult = (SearchResult) response.body();
-                        List<Store> storeList = searchResult.getStores();
-                       boolean visible= getLifecycle().getCurrentState().equals(Lifecycle.State.STARTED)||getLifecycle().getCurrentState().equals(Lifecycle.State.RESUMED);
-                        StoreModel storeModel;
-                       for(Store store: storeList) {
-                           storeModel= new StoreModel(store);
-                            StoreModelList.add(storeModel);
-                        }
-                        if(visible){
-                            Log.i(TAG,"EntryActivity is visiable");
-                            model.addRestaurants(StoreModelList);
-                            StoreModelList.clear();
-                        }
-                    }
-                });
+
+        disposable = apiService.getRestaurant(37.422740,-122.139956,offset,20).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .compose(new ResultToResponseWithErrorHandlingTransformer<>()).subscribe(response -> {
+                            isDownloading=false;
+                            SearchResult searchResult = (SearchResult) response.body();
+                            List<Store> storeList = searchResult.getStores();
+                            boolean visible= getLifecycle().getCurrentState().equals(Lifecycle.State.STARTED)||getLifecycle().getCurrentState().equals(Lifecycle.State.RESUMED);
+                            StoreModel storeModel;
+                            for(Store store: storeList) {
+                                storeModel= new StoreModel(store);
+                                StoreModelList.add(storeModel);
+                            }
+                            if(visible){
+                                Log.i(TAG,"EntryActivity is visiable");
+                                model.addRestaurants(StoreModelList);
+                                StoreModelList.clear();
+                            }
+                        },
+                        error->{
+                            Toast.makeText(EntryActivity.this,"Download Failed",Toast.LENGTH_LONG).show();
+                            error.printStackTrace();
+                        });
     }
 
     @Override

@@ -32,27 +32,30 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     MenuModel menuModel=new MenuModel();
     final String key="index";
     ActionBar actionBar;
+    RestaurantsModel model;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         index =getIntent().getIntExtra(key,-1);
         Log.i(TAG,"index: "+index);
-        setContentView(R.layout.detail_of_restaurant);
-        detailOfRestaurantBinding=DataBindingUtil.setContentView(this,R.layout.detail_of_restaurant);
-        detailOfRestaurantBinding.setMenuModel(menuModel);
-        detailOfRestaurantBinding.setLifecycleOwner(this);
-        detailOfRestaurantBinding.setRestaurantView(this);
-        detailOfRestaurantBinding.activityUsersRecycler.setLayoutManager(new LinearLayoutManager(this));
+        model=RestaurantsModel.getInstance();
+        if(model.size()>0) {
+            detailOfRestaurantBinding = DataBindingUtil.setContentView(this, R.layout.detail_of_restaurant);
+            detailOfRestaurantBinding.setMenuModel(menuModel);
+            detailOfRestaurantBinding.setLifecycleOwner(this);
+            detailOfRestaurantBinding.setRestaurantView(this);
+            detailOfRestaurantBinding.activityUsersRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        init();
-        actionBar= getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(store.getName());
+            init();
+            actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(store.getName());
+        }
     }
 
 
     public void init(){
-        RestaurantsModel model=RestaurantsModel.getInstance();
+
         StoreModel storeModel= model.restaurants.get(index);
         store = storeModel.getStore();
         List<PopularItem> items = store.getMenus().get(0).getPopularItems();

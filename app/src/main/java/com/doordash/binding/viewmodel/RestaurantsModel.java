@@ -10,15 +10,22 @@ import java.util.List;
 public class RestaurantsModel extends BaseObservable {
 
     @Bindable
-    public ObservableArrayList<StoreModel> restaurants;
+    public  ObservableArrayList<StoreModel> restaurants;
 
-    private static RestaurantsModel restaurantsModel;
+    private volatile  static RestaurantsModel instance;
     public static RestaurantsModel getInstance(){
-        if(null==restaurantsModel){
-            restaurantsModel = new RestaurantsModel();
-            restaurantsModel.restaurants =new ObservableArrayList<>();
+        if(null== instance){
+            synchronized (RestaurantsModel.class) {
+                if(null == instance) {
+                    instance = new RestaurantsModel();
+                    instance.restaurants = new ObservableArrayList<>();
+                }
+            }
         }
-        return restaurantsModel;
+        return instance;
+    }
+    private RestaurantsModel(){
+
     }
 
 //    public RestaurantsModel(ObservableArrayList<StoreModel> restaurants) {
