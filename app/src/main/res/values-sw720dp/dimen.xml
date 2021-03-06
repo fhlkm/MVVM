@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_page_image_width">260dp</dimen>
+    <dimen name="main_page_image_height">200dp</dimen>
+    <dimen name="main_page_store_name_width">260dp</dimen>
+    <dimen name="main_page_store_name_height">60dp</dimen>
+    <dimen name="main_page_store_name_size">25sp</dimen>
+</resources>

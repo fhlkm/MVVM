@@ -28,6 +28,7 @@ import com.doordash.databinding.BrowseRestaurantBinding;
 
 import com.doordash.server.ApiService;
 import com.doordash.server.ResultToResponseWithErrorHandlingTransformer;
+import com.doordash.uitls.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,10 +58,14 @@ public class EntryActivity extends AppCompatActivity {
         viewBinding.setRestaurantsViewModel(model);
         viewBinding.setLifecycleOwner(this);
         viewBinding.activityUsersRecycler.setLayoutManager(new LinearLayoutManager(this));
-        search(0);
+        if(Util.isNetWorkConnected(getApplication())) {
+            search(0);
+        }else{
+            Toast.makeText(EntryActivity.this, "Please check Internet connection", Toast.LENGTH_SHORT).show();
+        }
 
     }
-    public ItemBinder<StoreModel> itemViewBinder()
+    public  ItemBinder<StoreModel> itemViewBinder()
     {
         return new CompositeItemBinder<StoreModel>(
                 //BR.bindingstore: viewModel in item_restaurant
