@@ -31,9 +31,9 @@ import java.util.*
 
 class EntryActivity : AppCompatActivity() {
 //    var restaurantsModel: RestaurantsModel? = null
-    var viewBinding: BrowseRestaurantBinding? = null
-    var disposable: Disposable? = null
-    var model: RestaurantsModel? = null
+    lateinit var viewBinding: BrowseRestaurantBinding
+    lateinit  var disposable: Disposable
+    lateinit var model: RestaurantsModel
     var StoreModelList: MutableList<StoreModel> =
         ArrayList()
     var isDownloading = false
@@ -43,10 +43,10 @@ class EntryActivity : AppCompatActivity() {
 //        val restaurants = ObservableArrayList<StoreModel>()
         model = RestaurantsModel.instance
         viewBinding = DataBindingUtil.setContentView(this, R.layout.browse_restaurant)
-        viewBinding!!.setMainView(this)
-        viewBinding!!.setRestaurantsViewModel(model)
-        viewBinding!!.setLifecycleOwner(this)
-        viewBinding!!.activityUsersRecycler.layoutManager = LinearLayoutManager(this)
+        viewBinding.setMainView(this)
+        viewBinding.setRestaurantsViewModel(model)
+        viewBinding.setLifecycleOwner(this)
+        viewBinding.activityUsersRecycler.layoutManager = LinearLayoutManager(this)
         if (Util.isNetWorkConnected(application)) {
             search(0)
         } else {
@@ -64,12 +64,13 @@ class EntryActivity : AppCompatActivity() {
         )
     }
 
+    // we can move it to view model ,then we don't need to care about memory leak
     private fun search(offset: Int) {
         Log.i(TAG, "Search Restaurants")
         isDownloading = true
         val apiService = instance
 
-        disposable = apiService.getRestaurant(37.422740, -122.139956, offset, 20)!!
+        disposable = apiService.getRestaurant(37.422740, -122.139956, offset, 20)
             .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
             .compose(ResultToResponseWithErrorHandlingTransformer())
             .subscribe(
@@ -88,7 +89,7 @@ class EntryActivity : AppCompatActivity() {
                     }
                     if (visible) {
                         Log.i(TAG, "EntryActivity is visiable")
-                        model!!.addRestaurants(StoreModelList)
+                        model.addRestaurants(StoreModelList)
                         StoreModelList.clear()
                     }
                 }
@@ -100,9 +101,9 @@ class EntryActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        model!!.clear()
-        if (disposable != null && !disposable!!.isDisposed) {
-            disposable!!.dispose()
+        model.clear()
+        if (disposable != null && !disposable.isDisposed) {
+            disposable.dispose()
         }
     }
 
@@ -115,21 +116,19 @@ class EntryActivity : AppCompatActivity() {
             if (!recyclerView.canScrollVertically(10)) {
                 Log.i(TAG, "loading new items")
                 if (!isDownloading && null != model) {
-                    search(model!!.size())
+                    search(model.size())
                 }
             }
         }
     }
 
     fun clickHandler(): ClickHandler<StoreModel> {
-        return object : ClickHandler<StoreModel> {
-            override fun onClick(storeModel: StoreModel, pos: Int) {
-                Log.i(TAG, storeModel.storeName)
-                val intent = Intent(this@EntryActivity, RestaurantDetailActivity::class.java)
-                intent.putExtra(key, pos)
-                startActivity(intent)
-                //                Toast.makeText(UsersView.this, user.getFirstName() + " " + user.getLastName(), Toast.LENGTH_SHORT).show();
-            }
+        return ClickHandler<StoreModel> { storeModel, pos ->
+            Log.i(TAG, storeModel.storeName)
+            val intent = Intent(this@EntryActivity, RestaurantDetailActivity::class.java)
+            intent.putExtra(key, pos)
+            startActivity(intent)
+            //                Toast.makeText(UsersView.this, user.getFirstName() + " " + user.getLastName(), Toast.LENGTH_SHORT).show();
         }
     }
 

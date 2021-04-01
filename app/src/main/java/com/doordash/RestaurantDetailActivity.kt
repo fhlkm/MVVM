@@ -20,38 +20,38 @@ import java.util.*
 class RestaurantDetailActivity : AppCompatActivity() {
     var TAG = "DD:RestaurantDetailActivity"
     var index = 0
-    var store: Store? = null
-    var detailOfRestaurantBinding: DetailOfRestaurantBinding? = null
+    lateinit var store: Store
+    lateinit var detailOfRestaurantBinding: DetailOfRestaurantBinding
     var menuModel = MenuModel()
     val key = "index"
-    var actionBar: ActionBar? = null
-    var model: RestaurantsModel? = null
+    lateinit var actionBar: ActionBar
+    lateinit var model: RestaurantsModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         index = intent.getIntExtra(key, -1)
         Log.i(TAG, "index: $index")
         model = RestaurantsModel.instance
-        if (model!!.size() > 0) {
+        if (model.size() > 0) {
             detailOfRestaurantBinding =
                 DataBindingUtil.setContentView(this, R.layout.detail_of_restaurant)
-            detailOfRestaurantBinding!!.setMenuModel(menuModel)
-            detailOfRestaurantBinding!!.setLifecycleOwner(this)
-            detailOfRestaurantBinding!!.setRestaurantView(this)
-            detailOfRestaurantBinding!!.activityUsersRecycler.layoutManager = LinearLayoutManager(
+            detailOfRestaurantBinding.setMenuModel(menuModel)
+            detailOfRestaurantBinding.setLifecycleOwner(this)
+            detailOfRestaurantBinding.setRestaurantView(this)
+            detailOfRestaurantBinding.activityUsersRecycler.layoutManager = LinearLayoutManager(
                 this
             )
             init()
-            actionBar = supportActionBar
-            actionBar!!.setDisplayHomeAsUpEnabled(true)
-            actionBar!!.title = store!!.name
+            actionBar = supportActionBar!!
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.title = store.name
         }
     }
 
     fun init() {
-        val storeModel = model!!.restaurants[index]
+        val storeModel = model.restaurants[index]
         store = storeModel.store
-        if(!store!!.menus.isEmpty()) {
-            val items = store!!.getMenus()[0].popularItems
+        if(!store.menus.isEmpty()) {
+            val items = store.getMenus()[0].popularItems
             val dishlist: MutableList<DishModel> = ArrayList()
             var dishModel: DishModel
             for (item in items) {

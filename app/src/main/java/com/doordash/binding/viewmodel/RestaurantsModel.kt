@@ -7,7 +7,7 @@ import androidx.databinding.ObservableArrayList
 class RestaurantsModel private constructor() : BaseObservable() {
     @JvmField
     @Bindable
-    var restaurants: ObservableArrayList<StoreModel> = ObservableArrayList()
+    var restaurants: ObservableArrayList<StoreModel> = ObservableArrayList()////Bindable should move to get, works with   notifyPropertyChanged()
 
     fun addRestaurants(list: List<StoreModel>) {
         restaurants.addAll(list!!)

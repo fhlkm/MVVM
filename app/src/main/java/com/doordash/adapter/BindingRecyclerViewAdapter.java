@@ -54,7 +54,8 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
 
 //        Log.i(TAG,"onBindViewHolder");
         final T item = items.get(position);
-        //layout and RestaurantModel
+        //layout and RestaurantModel(MenuModel)
+
         viewHolder.binding.setVariable(itemBinder.getBindingVariable(item),item);
         viewHolder.binding.getRoot().setTag(ITEM_MODEL, item);
         viewHolder.binding.getRoot().setTag(ITEM_INDEX, position);

@@ -12,6 +12,7 @@ class CompositeItemBinder<T>(vararg conditionalDataBinders: ConditionalDataBinde
         throw IllegalStateException()
     }
 
+    //BR.x
     override fun getBindingVariable(model: T): Int {
         for (i in conditionalDataBinders.indices) {
             val dataBinder = conditionalDataBinders[i]

@@ -22,8 +22,7 @@ object RecyclerViewBindings {
         items: Collection<T>?
     ) {
         Log.i(TAG, "setItems")
-        val adapter =
-            recyclerView.adapter as BindingRecyclerViewAdapter<T>?
+        val adapter = recyclerView.adapter as BindingRecyclerViewAdapter<T>?
         if (null != adapter) {
             Log.i(TAG, "setItems to Adapter")
             adapter.setItems(items)
@@ -44,8 +43,9 @@ object RecyclerViewBindings {
         val clickHandler =
             recyclerView.getTag(KEY_CLICK_HANDLER) as? ClickHandler<T>
         Log.i(TAG, "setItemViewBinder")
-        val adapter =
-            BindingRecyclerViewAdapter(itemViewMapper, items)
+        //  RestaurantBinder(BR.bindingstore, R.layout.item_restaurant)
+        //  MenuBinder(BR.bindingdish, R.layout.item_dish)
+        val adapter = BindingRecyclerViewAdapter(itemViewMapper, items)
         recyclerView.adapter = adapter
     }
 
@@ -65,9 +65,9 @@ object RecyclerViewBindings {
 
     @JvmStatic
     @BindingAdapter("clickHandler")
-    fun <T> setHandler(recyclerView: RecyclerView, handler: ClickHandler<T>?) {
+    fun <T> setHandler(recyclerView: RecyclerView, handler: ClickHandler<T>) {
         val adapter =
-            recyclerView.adapter as BindingRecyclerViewAdapter<T>?
+            recyclerView.adapter as BindingRecyclerViewAdapter<T>
         if (adapter != null) {
             adapter.setClickHandler(handler)
         } else {
