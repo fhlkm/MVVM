@@ -10,7 +10,7 @@ class RestaurantsModel private constructor() : BaseObservable() {
     var restaurants: ObservableArrayList<StoreModel> = ObservableArrayList()////Bindable should move to get, works with   notifyPropertyChanged()
 
     fun addRestaurants(list: List<StoreModel>) {
-        restaurants.addAll(list!!)
+        restaurants.addAll(list)
     }
 
     fun clear() {

@@ -17,10 +17,7 @@ object RecyclerViewBindings {
 
     @JvmStatic
     @BindingAdapter("items")
-    fun <T> setItems(
-        recyclerView: RecyclerView,
-        items: Collection<T>?
-    ) {
+    fun <T> setItems(recyclerView: RecyclerView, items: Collection<T>) {
         Log.i(TAG, "setItems")
         val adapter = recyclerView.adapter as BindingRecyclerViewAdapter<T>?
         if (null != adapter) {
@@ -34,14 +31,9 @@ object RecyclerViewBindings {
 
     @JvmStatic
     @BindingAdapter("itemViewBinder")
-    fun <T> setItemViewBinder(
-        recyclerView: RecyclerView,
-        itemViewMapper: ItemBinder<T>?
-    ) {
-        val items =
-            recyclerView.getTag(KEY_ITEMS) as? Collection<T>
-        val clickHandler =
-            recyclerView.getTag(KEY_CLICK_HANDLER) as? ClickHandler<T>
+    fun <T> setItemViewBinder(recyclerView: RecyclerView, itemViewMapper: ItemBinder<T>) {
+        val items = recyclerView.getTag(KEY_ITEMS) as? Collection<T>
+        val clickHandler = recyclerView.getTag(KEY_CLICK_HANDLER) as? ClickHandler<T>
         Log.i(TAG, "setItemViewBinder")
         //  RestaurantBinder(BR.bindingstore, R.layout.item_restaurant)
         //  MenuBinder(BR.bindingdish, R.layout.item_dish)
@@ -51,10 +43,7 @@ object RecyclerViewBindings {
 
     @JvmStatic
     @BindingAdapter("scrollListener")
-    fun scrollListener(
-        recyclerView: RecyclerView,
-        listener: RecyclerView.OnScrollListener?
-    ) {
+    fun scrollListener(recyclerView: RecyclerView, listener: RecyclerView.OnScrollListener?) {
         Log.i(TAG, "scrollListener")
         if (null != listener) {
             recyclerView.addOnScrollListener(listener)
@@ -66,8 +55,7 @@ object RecyclerViewBindings {
     @JvmStatic
     @BindingAdapter("clickHandler")
     fun <T> setHandler(recyclerView: RecyclerView, handler: ClickHandler<T>) {
-        val adapter =
-            recyclerView.adapter as BindingRecyclerViewAdapter<T>
+        val adapter = recyclerView.adapter as BindingRecyclerViewAdapter<T>
         if (adapter != null) {
             adapter.setClickHandler(handler)
         } else {
@@ -77,10 +65,7 @@ object RecyclerViewBindings {
 
     @JvmStatic
     @BindingAdapter("restaurantLogo")
-    fun setRestaurantLogo(
-        imageView: ImageView,
-        imageUrl: String?
-    ) {
+    fun setRestaurantLogo(imageView: ImageView, imageUrl: String?) {
         if (!TextUtils.isEmpty(imageUrl)) {
             Glide.with(imageView.context)
                 .load(imageUrl)
