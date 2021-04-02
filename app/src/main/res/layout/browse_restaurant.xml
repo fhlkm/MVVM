@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+<!--We use BaseObservable rather than List<Store>, we want to let it be lifecycle sensitive, we only need to show data when the UI is in front-->
         <variable
             name="restaurantsViewModel"
             type="com.doordash.binding.viewmodel.RestaurantsModel" />

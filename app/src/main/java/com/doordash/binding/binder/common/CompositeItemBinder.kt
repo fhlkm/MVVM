@@ -1,5 +1,5 @@
 package com.doordash.binding.binder.common
-
+//strategy design pattern
 class CompositeItemBinder<T>(vararg conditionalDataBinders: ConditionalDataBinder<T>) : ItemBinder<T> {
     private val conditionalDataBinders: Array<ConditionalDataBinder<T>>
     override fun getLayoutRes(model: T): Int {
