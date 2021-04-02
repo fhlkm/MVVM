@@ -23,7 +23,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
-import java.util.*
 
 class EntryActivity : AppCompatActivity() {
     //    var restaurantsModel: RestaurantsModel? = null
@@ -100,15 +99,14 @@ class EntryActivity : AppCompatActivity() {
             }
         }
     }
-
-    fun clickHandler(): ClickHandler<Store> {
-        return ClickHandler<Store> { storeModel, pos ->
+    val clickHandler = object: ClickHandler<Store>{
+        override fun onClick(storeModel: Store, pos: Int){
             Log.i(TAG, storeModel.name)
             val intent = Intent(this@EntryActivity, RestaurantDetailActivity::class.java)
             intent.putExtra(key, pos)
             startActivity(intent)
-            //                Toast.makeText(UsersView.this, user.getFirstName() + " " + user.getLastName(), Toast.LENGTH_SHORT).show();
         }
+
     }
 
     companion object {
