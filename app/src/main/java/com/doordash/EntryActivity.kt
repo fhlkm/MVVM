@@ -36,10 +36,11 @@ class EntryActivity : AppCompatActivity() {
 //        val restaurants = ObservableArrayList<StoreModel>()
         model = RestaurantsModel.instance
         viewBinding = DataBindingUtil.setContentView(this, R.layout.browse_restaurant)
-        viewBinding.setMainView(this)
-        viewBinding.setRestaurantsViewModel(model)
-        viewBinding.setLifecycleOwner(this)
+        viewBinding.mainView = this
+        viewBinding.restaurantsViewModel = model
+        viewBinding.lifecycleOwner = this
         viewBinding.activityUsersRecycler.layoutManager = LinearLayoutManager(this)
+
         if (Util.isNetWorkConnected(application)) {
             fetch(0)
         } else {
