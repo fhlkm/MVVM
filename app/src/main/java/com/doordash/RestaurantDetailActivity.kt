@@ -32,11 +32,10 @@ class RestaurantDetailActivity : AppCompatActivity() {
         Log.i(TAG, "index: $index")
         model = RestaurantsModel.instance
         if (model.size() > 0) {
-            detailOfRestaurantBinding =
-                DataBindingUtil.setContentView(this, R.layout.detail_of_restaurant)
-            detailOfRestaurantBinding.setMenuModel(menuModel)
-            detailOfRestaurantBinding.setLifecycleOwner(this)
-            detailOfRestaurantBinding.setRestaurantView(this)
+            detailOfRestaurantBinding = DataBindingUtil.setContentView(this, R.layout.detail_of_restaurant)
+            detailOfRestaurantBinding.menuModel = menuModel
+            detailOfRestaurantBinding.lifecycleOwner = this
+            detailOfRestaurantBinding.restaurantView = this
             detailOfRestaurantBinding.activityUsersRecycler.layoutManager = LinearLayoutManager(
                 this
             )
@@ -48,8 +47,7 @@ class RestaurantDetailActivity : AppCompatActivity() {
     }
 
     fun init() {
-        val storeModel = model.restaurants[index]
-        store = storeModel.store
+        store = model.restaurants[index]
         if(!store.menus.isEmpty()) {
             val items = store.getMenus()[0].popularItems
             val dishlist: MutableList<DishModel> = ArrayList()

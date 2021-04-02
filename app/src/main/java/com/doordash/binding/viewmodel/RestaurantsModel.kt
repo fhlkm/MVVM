@@ -3,13 +3,15 @@ package com.doordash.binding.viewmodel
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.MutableLiveData
+import com.doordash.bean.Store
 
 class RestaurantsModel private constructor() : BaseObservable() {
     @JvmField
     @Bindable
-    var restaurants: ObservableArrayList<StoreModel> = ObservableArrayList()////Bindable should move to get, works with   notifyPropertyChanged()
+    var restaurants: ObservableArrayList<Store> = ObservableArrayList()////Bindable should move to get, works with   notifyPropertyChanged()
 
-    fun addRestaurants(list: List<StoreModel>) {
+    fun addRestaurants(list: List<Store>) {
         restaurants.addAll(list)
     }
 

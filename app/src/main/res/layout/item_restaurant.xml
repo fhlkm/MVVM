@@ -6,7 +6,7 @@
 
         <variable
             name="bindingstore"
-            type="com.doordash.binding.viewmodel.StoreModel" />
+            type="com.doordash.bean.Store" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="@dimen/main_page_image_width"
             android:layout_height="@dimen/main_page_image_height"
-            app:restaurantLogo="@{bindingstore.imageUrl}"
+            app:restaurantLogo="@{bindingstore.coverImgUrl}"
             />
 
         <TextView
@@ -35,7 +35,7 @@
             android:textSize="@dimen/main_page_store_name_size"
             app:layout_constraintTop_toTopOf="@id/image"
             app:layout_constraintLeft_toRightOf="@id/image"
-            android:text="@{bindingstore.storeName}"
+            android:text="@{bindingstore.name}"
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_width="@dimen/main_page_store_name_width"
@@ -52,7 +52,7 @@
             android:textSize="@dimen/main_page_store_name_size"
             app:layout_constraintBottom_toBottomOf="@id/image"
             app:layout_constraintLeft_toRightOf="@id/image"
-            android:text="@{bindingstore.storeDescription}"
+            android:text="@{bindingstore.description}"
             android:maxLines="2"
             android:ellipsize="end"
             android:layout_width="@dimen/main_page_store_name_width"

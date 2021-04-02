@@ -6,16 +6,15 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.doordash.adapter.ClickHandler
 import com.doordash.bean.SearchResult
+import com.doordash.bean.Store
 import com.doordash.binding.binder.RestaurantBinder
 import com.doordash.binding.binder.common.CompositeItemBinder
 import com.doordash.binding.binder.common.ItemBinder
 import com.doordash.binding.viewmodel.RestaurantsModel
-import com.doordash.binding.viewmodel.StoreModel
 import com.doordash.databinding.BrowseRestaurantBinding
 import com.doordash.server.ApiService.Companion.instance
 import com.doordash.server.ResultToResponseWithErrorHandlingTransformer
@@ -31,8 +30,6 @@ class EntryActivity : AppCompatActivity() {
     lateinit var viewBinding: BrowseRestaurantBinding
     lateinit var disposable: Disposable
     lateinit var model: RestaurantsModel
-    var StoreModelList: MutableList<StoreModel> =
-            ArrayList()
     var isDownloading = false
     val key = "index"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +52,7 @@ class EntryActivity : AppCompatActivity() {
         }
     }
 
-    fun itemViewBinder(): ItemBinder<StoreModel> {
+    fun itemViewBinder(): ItemBinder<Store> {
         return CompositeItemBinder( //BR.bindingstore: viewModel in item_restaurant
                 RestaurantBinder(BR.bindingstore, R.layout.item_restaurant)
         )
@@ -75,14 +72,8 @@ class EntryActivity : AppCompatActivity() {
                             isDownloading = false
                             val searchResult = response.body() as SearchResult
                             val storeList = searchResult.stores
-                            var storeModel: StoreModel
-                            for (store in storeList) {
-                                storeModel = StoreModel(store)
-                                StoreModelList.add(storeModel)
-                            }
                             Log.i(TAG, "EntryActivity is visiable")
-                            model.addRestaurants(StoreModelList)
-                            StoreModelList.clear()
+                            model.addRestaurants(storeList)
                         }
                 ) { error: Throwable ->
                     Toast.makeText(this@EntryActivity, "Download Failed", Toast.LENGTH_LONG).show()
@@ -110,9 +101,9 @@ class EntryActivity : AppCompatActivity() {
         }
     }
 
-    fun clickHandler(): ClickHandler<StoreModel> {
-        return ClickHandler<StoreModel> { storeModel, pos ->
-            Log.i(TAG, storeModel.storeName)
+    fun clickHandler(): ClickHandler<Store> {
+        return ClickHandler<Store> { storeModel, pos ->
+            Log.i(TAG, storeModel.name)
             val intent = Intent(this@EntryActivity, RestaurantDetailActivity::class.java)
             intent.putExtra(key, pos)
             startActivity(intent)
