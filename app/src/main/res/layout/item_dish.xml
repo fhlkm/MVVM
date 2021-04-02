@@ -7,7 +7,7 @@
 
         <variable
             name="bindingdish"
-            type="com.doordash.binding.viewmodel.DishModel" />
+            type="com.doordash.bean.PopularItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/main_page_image_height"
-            app:restaurantLogo="@{bindingdish.dishImageUrl}"
+            app:restaurantLogo="@{bindingdish.imgUrl}"
             />
 
         <TextView
@@ -35,7 +35,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dish_image"
-            android:text="@{bindingdish.dishName}"
+            android:text="@{bindingdish.name}"
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_width="wrap_content"

@@ -7,15 +7,14 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.doordash.bean.PopularItem
 import com.doordash.bean.Store
 import com.doordash.binding.binder.MenuBinder
 import com.doordash.binding.binder.common.CompositeItemBinder
 import com.doordash.binding.binder.common.ItemBinder
-import com.doordash.binding.viewmodel.DishModel
 import com.doordash.binding.viewmodel.MenuModel
 import com.doordash.binding.viewmodel.RestaurantsModel
 import com.doordash.databinding.DetailOfRestaurantBinding
-import java.util.*
 
 class RestaurantDetailActivity : AppCompatActivity() {
     var TAG = "DD:RestaurantDetailActivity"
@@ -50,17 +49,12 @@ class RestaurantDetailActivity : AppCompatActivity() {
         store = model.restaurants[index]
         if(!store.menus.isEmpty()) {
             val items = store.getMenus()[0].popularItems
-            val dishlist: MutableList<DishModel> = ArrayList()
-            var dishModel: DishModel
-            for (item in items) {
-                dishModel = DishModel(item)
-                dishlist.add(dishModel)
-            }
-            menuModel.addAll(dishlist)
+
+            menuModel.addAll(items)
         }
     }
 
-    fun itemViewBinder(): ItemBinder<DishModel> {
+    fun itemViewBinder(): ItemBinder<PopularItem> {
         return CompositeItemBinder( //BR.bindingdish: in item_dish
             MenuBinder(BR.bindingdish, R.layout.item_dish)
         )
