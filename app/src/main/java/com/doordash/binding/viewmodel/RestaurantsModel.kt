@@ -7,8 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.doordash.bean.Store
 
 class RestaurantsModel private constructor() : BaseObservable() {
-    @JvmField
-    @Bindable
+
     var restaurants: ObservableArrayList<Store> = ObservableArrayList()////Bindable should move to get, works with   notifyPropertyChanged()
 
     fun addRestaurants(list: List<Store>) {
